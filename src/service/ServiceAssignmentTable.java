@@ -56,7 +56,7 @@ public class ServiceAssignmentTable {
                 System.out.println("Số tuyến cần phân công  phải là số nguyên nhập lại:");
             }
         } while (true);
-        Route Route1 = null;
+        Route route1 = null;
         List<Assignment> assignments = new LinkedList<>();
         for (int i = 0; i < quantity; ++i) {
             System.out.println("Nhập mã số tuyến cần phân công: ");
@@ -82,11 +82,11 @@ public class ServiceAssignmentTable {
                         break;
                     }
                     if (Route.getId() == idRoutes) {
-                        Route1 = Route;
+                        route1 = Route;
                         break;
                     }
                 }
-                if (Route1 != null) {
+                if (route1 != null) {
                     break;
                 }
                 System.out.println("Không có mã tuyến hoặc đã có mã tuyến nhập lại:");
@@ -102,7 +102,7 @@ public class ServiceAssignmentTable {
                 }
             } while (true);
 
-            Assignment assignment = new Assignment(Route1, number);
+            Assignment assignment = new Assignment(route1, number);
 
             assignments.add(assignment);
 
@@ -161,9 +161,7 @@ public class ServiceAssignmentTable {
 
     public static void sortAlbName() {
         Collections.sort(Main.assignmentTables);
-        for (AssignmentTable assignmentTable : Main.assignmentTables) {
-            System.out.println(assignmentTable);
-        }
+        Main.assignmentTables.forEach(System.out::println);
     }
 
     public static void sumDistance() {
@@ -173,10 +171,10 @@ public class ServiceAssignmentTable {
     }
 
     public static void insertInfo(AssignmentTable assignmentTable) {
-        String sql = "INSERT INTO assignmenttable( id,driver_id,route_id,quantity)"
+        String sql = "INSERT INTO assignment( id,driver_id,route_id,quantity)"
                 + "VALUES(?,?,?,?)";
         int count = 0;
-        String sql1 = "Select * from assignmenttable";
+        String sql1 = "Select * from assignment";
         try {
             Connection connection = ConnectDatabase.connection();
             Statement statement = connection.createStatement();
@@ -190,7 +188,6 @@ public class ServiceAssignmentTable {
             System.out.println(e.getMessage());
         }
         try {
-
             Connection connection = ConnectDatabase.connection();
             PreparedStatement statement = connection.prepareStatement(sql);
             for(int i=0;i<assignmentTable.getAssignments().size();++i) {
@@ -208,7 +205,7 @@ public class ServiceAssignmentTable {
     }
     public static void showInfo() {
         List<AssignmentTable> assignmentTables = new LinkedList<>();
-        String SQL1 = "select * from assignmenttable";
+        String SQL1 = "select * from assignment";
         try {
             Connection connection = ConnectDatabase.connection();
             Statement statement = connection.createStatement();

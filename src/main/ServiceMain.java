@@ -16,9 +16,9 @@ public class ServiceMain {
         System.out.println("3. Nhập danh sách tuyến ");
         System.out.println("4. In ra danh sách tuyến");
         System.out.println("5.Quản lý phân công lái xe");
-        System.out.println("6. in danh sách phân công lái xe");
-        System.out.println("7. ");
-        System.out.println("8. ");
+        System.out.println("6. In danh sách phân công lái xe");
+        System.out.println("7. Sắp xếp theo tên ");
+        System.out.println("8. In ra khoảng cách của lái xe ");
         System.out.println("9. Thoát");
         System.out.println("----------------------------------------------");
 
@@ -57,8 +57,10 @@ public class ServiceMain {
                     ServiceAssignmentTable.showInfo();
                     break;
                 case 7:
+                    ServiceAssignmentTable.sortAlbName();
                     break;
                 case 8:
+                    ServiceAssignmentTable.sumDistance();
                     break;
                 case 9:
                     check = false;
